@@ -45,22 +45,24 @@ resource "aws_ecs_task_definition" "vhgapp_task_definition" {
   #   docker_container_port = "${var.docker_container_port}"
   #   region = "${var.region}"
   # })
+
+  # TODO: Remove later if environment varialbes for container_definitions is not needed:
+  # environment = [
+  #   {
+  #     name = "NODE_ENV"
+  #     value = "${var.vercel_env}"
+  #   },
+  #   {
+  #     name = "VERCEL_URL"
+  #     value = "${var.vercel_url}"
+  #   }
+  # ]
   container_definitions = jsonencode(
     [
       {
         name = "${var.ecs_service_name}"
         image = "${var.docker_image_url}"
         essential = true
-        environment = [
-          {
-            name = "NODE_ENV"
-            value = "${var.vercel_env}"
-          },
-          {
-            name = "VERCEL_URL"
-            value = "${var.vercel_url}"
-          }
-        ]
         portMappings = [
           {
             containerPort = "${var.docker_container_port}"

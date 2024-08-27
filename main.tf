@@ -3,16 +3,23 @@ provider "aws" {
 }
 
 terraform {
-  backend "s3" {}
+  # backend "s3" {}
+  cloud {
+    organization = "von-herff-gallery"
+    workspaces {
+      name = "vhg-infra-app"
+    }
+  }
 }
 
 data "terraform_remote_state" "platform" {
-  backend = "s3"
+  backend = "remote"
 
   config = {
-    key = "${var.remote_state_key}"
-    bucket = "${var.remote_state_bucket}"
-    region = "${var.region}"
+    organization = "von-herff-gallery"
+    workspaces = {
+      name = "vhg-infra-platform"
+    }
   }
 }
 

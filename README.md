@@ -1,4 +1,4 @@
-# Von Heff Gallery - Application Infrastructure 
+# Von Heff Gallery - Application Infrastructure
 
 This repo creates app infrastructure supporting the hosting of the Von Herff Gallery application. It's one of three layers of infrastructure that needs to be built in AWS in order to host the Von Herff Gallery application.
 
